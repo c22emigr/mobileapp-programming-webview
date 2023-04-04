@@ -22,11 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showInternalWebPage(){
         // TODO: Add your code for showing internal web page here
-        myWebView = findViewById(R.id.my_webview);
-        myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
-        myWebView.loadUrl("https://google.se");
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+
     }
 
     @Override
@@ -36,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        showInternalWebPage();
+        myWebView = findViewById(R.id.my_webview);
+        myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
+        myWebView.loadUrl("https://google.se");
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
 
         /*
