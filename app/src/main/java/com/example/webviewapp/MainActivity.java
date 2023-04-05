@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
         myWebView.loadUrl("https://google.se");
         WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(false);
 
 
         /*
