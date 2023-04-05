@@ -1,9 +1,52 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+För att få webviewen att fungera så måste först en variabel med värdet WebView skapas. Sedan väljer vi vilken URL vi vill skicka användaren till.
 
-_Du kan ta bort all text som finns sedan tidigare_.
+    WebView myWebView;
+    myWebView = findViewById(R.id.my_webview);
+    myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
+    myWebView.loadUrl("https://google.se");
+    WebSettings webSettings = myWebView.getSettings();
+    webSettings.setJavaScriptEnabled(true);
+
+Först började jag med att lägga in kod i de två funktionerna för att kunna visa både den interna och den externa sidan. Vi använder oss av samma kod för 
+myWebView där den laddar olika URL:er beroende på om funktionen external eller internal webpage kallas.
+
+
+    public void showExternalWebPage(){
+        // TODO: Add your code for showing external web page here
+        myWebView.loadUrl("https://youtube.se");
+    }
+
+    public void showInternalWebPage(){
+        // TODO: Add your code for showing internal web page here
+        myWebView.loadUrl("file:///android_asset/about.html");
+    }
+
+Nästa steg var att i if-satserna kalla på de respektive funktionerna för internal och external så att knapparna inne i applikationen kan leda oss till 
+våra URL:s beroende på om vi valt external eller internal.
+
+        if (id == R.id.action_external_web) {
+            Log.d("==>","Will display external web page");
+            showExternalWebPage();
+            return true;
+        }
+
+        if (id == R.id.action_internal_web) {
+            Log.d("==>","Will display internal web page");
+            showInternalWebPage();
+            return true;
+        }
+
+Ett annat steg som var nödvändigt för att få en internal html-fil i en mobilapp så behövde man först skapa ett assets folder där man sedan skapar en html-fil
+som sedan kallas av funktionen med file-pathen file:///android_asset/about.html.
+För att få applikationen att kopplas till internet så måste <uses-permission android:name="android.permission.INTERNET" /> läggas in xml-filen "AndroidManifest"
+vilket gör att appen kan kopplas till internet.
+
+![img.png](img.png)
+![img_1.png](img_1.png)
+
 
 ## Följande grundsyn gäller dugga-svar:
 
@@ -12,23 +55,6 @@ _Du kan ta bort all text som finns sedan tidigare_.
 - Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
 - Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
 - I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
 ```
 
 Bilder läggs i samma mapp som markdown-filen.
