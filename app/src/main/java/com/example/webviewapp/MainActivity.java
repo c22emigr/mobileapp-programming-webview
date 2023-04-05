@@ -18,11 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
+        myWebView.loadUrl("https://youtube.se");
     }
 
     public void showInternalWebPage(){
         // TODO: Add your code for showing internal web page here
-
+        myWebView.loadUrl("file:///android_asset/about.html");
     }
 
     @Override
@@ -82,11 +83,13 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_external_web) {
             Log.d("==>","Will display external web page");
+            showExternalWebPage();
             return true;
         }
 
         if (id == R.id.action_internal_web) {
             Log.d("==>","Will display internal web page");
+            showInternalWebPage();
             return true;
         }
 
